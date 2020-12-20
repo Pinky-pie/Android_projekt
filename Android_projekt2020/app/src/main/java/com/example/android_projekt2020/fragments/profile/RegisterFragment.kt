@@ -1,4 +1,4 @@
-package com.example.android_projekt2020
+package com.example.android_projekt2020.fragments.profile
 
 import android.Manifest
 import android.app.Activity
@@ -16,40 +16,39 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.android_projekt2020.R
+import com.example.android_projekt2020.data.User
+import com.example.android_projekt2020.data.UserViewModel
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
 
-// but1 choose_img but2 upload_img  //Prof photo selected_img, Name person_name, Address person_address, Number person_number, Email person email, Favourites-->
+class RegisterFragment : Fragment() {
 
-class ProfileFragment : Fragment() {
-
-    lateinit var sqliteHelper: DatabaseOperations
-
-
-
+    private lateinit var mUserViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_register, container, false)
 
-        sqliteHelper = DatabaseOperations(this.context)
-        print("We are in profile screen")
+        mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         val choose = view.findViewById<Button>(R.id.choose_img)
         val insert = view.findViewById<Button>(R.id.insert_data)
         val image = view.findViewById<ImageView>(R.id.selected_img)
         val name = view.findViewById<EditText>(R.id.person_name)
-        val password = view.findViewById<EditText>(R.id.person_password)
         val address = view.findViewById<EditText>(R.id.person_address)
         val number = view.findViewById<EditText>(R.id.person_number)
         val email = view.findViewById<EditText>(R.id.person_email)
 
         choose.setOnClickListener{
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if(ActivityCompat.checkSelfPermission(this.requireContext(),Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+                if(ActivityCompat.checkSelfPermission(this.requireContext(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
                 {
 //                    permission denied
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -70,21 +69,28 @@ class ProfileFragment : Fragment() {
         }
 
         insert.setOnClickListener{
-            if(image == null || name.length() == 0 || password.length() == 0 || address.length() == 0 || number.length() == 0 || email.length() == 0)
+            if(name.length() == 0 || address.length() == 0 || number.length() == 0 || email.length() == 0)
             {
                 Snackbar.make(this.requireView(), "Please fill the fields correctly!", Snackbar.LENGTH_SHORT).show()
             }
             else
             {
+//                Convert image to bytearray
                 val img: ByteArray = imageViewToByte(image)
-                sqliteHelper.insertData(img, name.toString(), password.toString(), address.toString(), number.toString(),email.toString())
+//                Create user
+                val user = User(0, name.toString(), address.toString(), number.toString(), email.toString())
+//                Add Data to database
+                mUserViewModel.addUser(user)
+                Snackbar.make(this.requireView(), "Data successfully added to database!", Snackbar.LENGTH_SHORT).show()
+//                findNavController().navigate(R.id.action_registerFragment_to_profileFragment)
+                //(img, name.toString(), password.toString(), address.toString(), number.toString(),email.toString())
             }
         }
 
         return view
     }
 
-    private fun imageViewToByte(image:ImageView): ByteArray {
+    private fun imageViewToByte(image: ImageView): ByteArray {
         val bitmap = (image.drawable as BitmapDrawable).bitmap
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
@@ -106,7 +112,7 @@ class ProfileFragment : Fragment() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode){
             PERMISSION_CODE -> {
-                if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
                     //permission from popup granted
                     pickImageFromGallery()
@@ -126,5 +132,4 @@ class ProfileFragment : Fragment() {
             image?.setImageURI(data?.data)
         }
     }
-
 }
