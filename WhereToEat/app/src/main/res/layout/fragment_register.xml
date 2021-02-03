@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:context=".fragments.RegisterFragment">
+
+        <ImageButton
+            android:id="@+id/homeButt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/home"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageView
+            android:id="@+id/selected_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/homeButt"
+            android:src="@android:drawable/checkbox_off_background" />
+
+
+        <Button
+            android:id="@+id/choose_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/selected_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:text="Choose Image" />
+
+        <EditText
+            android:id="@+id/person_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/choose_img"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/person_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Address"
+            android:layout_below="@id/person_name"/>
+
+        <EditText
+            android:id="@+id/person_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone"
+            android:layout_below="@id/person_address"
+            android:hint="Phone number"/>
+
+        <EditText
+            android:id="@+id/person_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="example@email.com"
+            android:layout_below="@id/person_number"/>
+        <Button
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/person_email"
+            android:layout_centerHorizontal="true"
+            android:text="Register" />
+        <!-- but1 choose_img but2 upload_img  //Prof photo selected_img, Name person_name, Address person_address, Number person_number, Email person email, Favourites-->
+    </RelativeLayout>
+</ScrollView>

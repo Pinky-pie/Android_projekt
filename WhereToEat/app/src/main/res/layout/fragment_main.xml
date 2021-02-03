@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MainFragment">
+
+    <ImageButton
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:id="@+id/profileButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        tools:src="@tools:sample/avatars"
+        />
+
+    <EditText
+        android:id="@+id/search_inRestaurantsList"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/profileButton"
+        android:ems="10"
+        android:hint="Search..."
+        android:inputType="textPersonName"
+        android:paddingLeft="10pt" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:layout_below="@id/search_inRestaurantsList"
+        android:clipToPadding="false"
+
+        tools:listitem="@layout/restaurant_item"/>
+
+</RelativeLayout>
