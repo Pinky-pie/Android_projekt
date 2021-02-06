@@ -20,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/price"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/restaurant_img"
             android:layout_toRightOf="@id/restaurant_img"
@@ -31,33 +31,61 @@
             android:id="@+id/loc_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="109dp"
+            android:layout_marginLeft="109dp"
             android:layout_toEndOf="@id/restaurant_img"
             android:layout_toRightOf="@id/restaurant_img"
             android:text="Location Name" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_toRightOf="@id/restaurant_img"
+            android:text="Location name:" />
 
         <TextView
             android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/loc_name"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="67dp"
+            android:layout_marginLeft="67dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/restaurant_img"
             android:layout_toRightOf="@id/restaurant_img"
             android:text="Address" />
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/restaurant_img"
+            android:text="Address:" />
+
+        <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/address"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginLeft="46dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/restaurant_img"
+            android:layout_toRightOf="@id/restaurant_img"
+            android:text="Price" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView2"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/restaurant_img"
             android:text="Price" />
 

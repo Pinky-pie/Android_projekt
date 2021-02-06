@@ -20,6 +20,11 @@
 
         <ImageView
             android:id="@+id/selected_img"
+            android:maxHeight="200dp"
+            android:maxWidth="200dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/homeButto"
@@ -42,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/choose_img"
             android:ems="10"
+            android:layout_centerHorizontal="true"
             android:text="Name" />
 
         <EditText
@@ -49,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_centerHorizontal="true"
             android:inputType="textPersonName"
             android:text="Address"
             android:layout_below="@id/name"/>
@@ -58,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_centerHorizontal="true"
             android:inputType="phone"
             android:layout_below="@id/address"
             android:text="Phone number"/>
@@ -67,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_centerHorizontal="true"
             android:inputType="textEmailAddress"
             android:text="example@email.com"
             android:layout_below="@id/number"/>
