@@ -8,6 +8,15 @@
     android:layout_centerVertical="false"
     tools:context=".fragments.DetailFragment">
 
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/rest_img"
         android:layout_width="wrap_content"

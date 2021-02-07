@@ -13,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.wheretoeat.R
 import com.example.wheretoeat.databases.restaurant.RestaurantViewModel
 import com.example.wheretoeat.databases.user.User
@@ -99,15 +100,11 @@ class DetailFragment : Fragment() {
             Snackbar.make(this.requireView(), "Successfully added to favourites!", Snackbar.LENGTH_SHORT).show()
         }
 
+        view.findViewById<ImageButton>(R.id.homeButton).setOnClickListener{
+            findNavController().navigate(R.id.action_detailFragment_to_mainFragment)
+        }
+
         return view
-    }
-
-    private fun imageViewToByte(image: ImageView): ByteArray {
-        val bitmap = (image.drawable as BitmapDrawable).bitmap
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
-
-        return stream.toByteArray()
     }
 
 }
