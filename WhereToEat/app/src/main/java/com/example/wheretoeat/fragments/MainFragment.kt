@@ -14,19 +14,23 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wheretoeat.R
+import com.example.wheretoeat.databases.restaurant.RestaurantViewModel
 import com.example.wheretoeat.databases.user.UserViewModel
+import com.example.wheretoeat.retrofit.Communicator
 import com.example.wheretoeat.retrofit.MainViewModel
 import com.example.wheretoeat.retrofit.RetAdapter
+import com.google.android.material.snackbar.Snackbar
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), RetAdapter.OnItemClickListener {
+
     private lateinit var mUserViewModel: UserViewModel
     private val retrofitViewModel: MainViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
 
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         val prof_but = view.findViewById<ImageButton>(R.id.profileButton)
@@ -44,7 +48,7 @@ class MainFragment : Fragment() {
 
         retrofitViewModel.getAllRestaurantsFromDropBox()
         retrofitViewModel.apiRestaurants.observe(viewLifecycleOwner, {
-            rec.adapter = RetAdapter(it)
+            rec.adapter = RetAdapter(it,this)
             rec.layoutManager = LinearLayoutManager(this.context)
             rec.setHasFixedSize(true)
         })
@@ -54,4 +58,13 @@ class MainFragment : Fragment() {
         }
         return view
     }
+
+    override fun onItemClick(position: Int) {
+        retrofitViewModel.apiRestaurants.observe(viewLifecycleOwner, {
+            Communicator.respond = it[position]
+        })
+        findNavController().navigate(R.id.action_mainFragment_to_detailFragment)
+    }
+
 }
+
